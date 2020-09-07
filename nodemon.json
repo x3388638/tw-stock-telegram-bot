@@ -1,0 +1,5 @@
+{
+  "verbose": true,
+  "ignore": [],
+  "exec": "babel-node index.js"
+}
