@@ -1,0 +1,5 @@
+const config = {
+  botToken: 'TELEGRAM_BOT_TOKEN'
+}
+
+export default config

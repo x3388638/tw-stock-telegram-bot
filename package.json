@@ -1,0 +1,35 @@
+{
+  "name": "tw-stock-telegram-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "prettier:check": "prettier --check './**/*.{js,json}' && echo \"✅ Prettier validated\"",
+    "prettier:write": "prettier --write './**/*.{js,json}'",
+    "lint": "eslint './**/*.js'",
+    "lint:fix": "eslint './**/*.js' --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.50.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.8.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.3.0",
+    "prettier": "^2.1.1"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "npm run prettier:check",
+      "npm run lint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
