@@ -2,3 +2,6 @@ export const botToken = 'TELEGRAM_BOT_TOKEN'
 export const targetUrl = 'https://tw.stock.yahoo.com/q/bc?s=STOCK_ID'
 export const targetChart =
   'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/StxChart"]'
+export const rawUrl =
+  'https://tw.quote.finance.yahoo.net/quote/q?type=tick&perd=1m&sym=STOCK_ID&callback='
+
