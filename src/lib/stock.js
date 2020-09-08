@@ -5,8 +5,20 @@ export const fetchStockData = async (stockId) => {
   const res = await fetch(rawUrl.replace('STOCK_ID', stockId)).then((res) =>
     res.text()
   )
-  const { mem, tick } = JSON.parse(res.match(/({.*})/)[1])
+  let parsedRes
+  try {
+    parsedRes = JSON.parse(res.match(/({.*})/)[1])
+  } catch {
+    return {}
+  }
+
+  const { mem = {}, tick = [] } = parsedRes || {}
   const name = mem.name
+
+  if (!name) {
+    return {}
+  }
+
   const currentPrice = tick.pop().p
   const risePrice = (mem[184] >= 0 ? '+' : '') + mem[184].toString()
   const risePricePerc =

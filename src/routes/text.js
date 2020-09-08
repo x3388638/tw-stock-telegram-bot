@@ -1,9 +1,16 @@
 import { fetchStockData } from '../lib/stock'
 
 const handleLiveText = (bot) => {
-  bot.onText(/\/text ([0-9_A-Z]+)/, async (msg, match) => {
+  bot.onText(/\/text (.*)/, async (msg, match) => {
     const chatId = msg.chat.id
     const stockId = match[1]
+
+    if (!/^[0-9_A-Z]+$/.test(stockId)) {
+      return bot.sendMessage(chatId, '請輸入有效股號\ne.g. `/text 2330`', {
+        parse_mode: 'Markdown'
+      })
+    }
+
     const {
       name,
       currentPrice,
@@ -18,6 +25,10 @@ const handleLiveText = (bot) => {
       lastPrice,
       ticks
     } = await fetchStockData(stockId)
+
+    if (!name) {
+      return bot.sendMessage(chatId, `查無 ${stockId}，請確認此股票已上市/櫃`)
+    }
 
     const resMD = `<pre>${stockId} ${name} | <b>${currentPrice}</b> | ${risePrice} (${risePricePerc})
 
@@ -44,6 +55,13 @@ ${ticks
 
     bot.sendMessage(chatId, resMD, {
       parse_mode: 'HTML'
+    })
+  })
+
+  bot.onText(/\/text$/, (msg) => {
+    const chatId = msg.chat.id
+    bot.sendMessage(chatId, '請帶入股號\ne.g. `/text 2330`', {
+      parse_mode: 'Markdown'
     })
   })
 }
