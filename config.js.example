@@ -1,5 +1,4 @@
-const config = {
-  botToken: 'TELEGRAM_BOT_TOKEN'
-}
-
-export default config
+export const botToken = 'TELEGRAM_BOT_TOKEN'
+export const targetUrl = 'https://tw.stock.yahoo.com/q/bc?s=STOCK_ID'
+export const targetChart =
+  'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/StxChart"]'

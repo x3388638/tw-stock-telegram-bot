@@ -13,7 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-telegram-bot-api": "^0.50.0"
+    "node-telegram-bot-api": "^0.50.0",
+    "puppeteer": "^5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

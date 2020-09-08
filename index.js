@@ -1,11 +1,4 @@
-import TelegramBot from 'node-telegram-bot-api'
-import { botToken } from './config'
+import bot from './src/lib/bot'
+import router from './src/routes'
 
-const bot = new TelegramBot(botToken, {
-  polling: true
-})
-
-bot.onText(/\/start/, (msg) => {
-  const chatId = msg.chat.id
-  bot.sendMessage(chatId, 'Welcome')
-})
+router.setup(bot)
