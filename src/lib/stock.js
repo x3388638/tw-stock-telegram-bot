@@ -7,22 +7,28 @@ export const fetchStockData = async (stockId) => {
   )
   let parsedRes
   try {
-    parsedRes = JSON.parse(res.match(/({.*})/)[1])
+    parsedRes = JSON.parse(
+      res
+        .match(/({.*})/)[1]
+        .replace(/[^"0-9Ee.]([0-9\-.]+)[^"0-9Ee.]/g, (m, t) =>
+          m.replace(t, `"${t}"`)
+        )
+    )
   } catch {
     return {}
   }
 
-  const { mem = {}, tick = [] } = parsedRes || {}
+  const { mem = {} } = parsedRes || {}
   const name = mem.name
 
   if (!name) {
     return {}
   }
 
-  const currentPrice = tick.pop().p
-  const risePrice = (mem[184] >= 0 ? '+' : '') + mem[184].toString()
+  const currentPrice = mem[125]
+  const risePrice = (mem[184] >= 0 ? '+' : '') + mem[184]
   const risePricePerc =
-    (mem[185] >= 0 ? '+' : '') + mem[185].toFixed(2).toString() + '%'
+    (mem[185] >= 0 ? '+' : '') + (+mem[185]).toFixed(2).toString() + '%'
   const amount = mem[404]
   const sellAmount = mem[645]
   const buyAmount = mem[646]
@@ -44,7 +50,7 @@ export const fetchStockData = async (stockId) => {
   ] // [[price, amount]]
 
   ticks = ticks.map((tick) => {
-    return [(tick[0] || '').toString(), (tick[1] || '').toString()]
+    return [tick[0] || '', tick[1] || '']
   })
 
   return {

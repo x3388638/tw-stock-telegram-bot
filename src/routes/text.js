@@ -13,16 +13,16 @@ const handleLiveText = (bot) => {
 
     const {
       name,
-      currentPrice,
-      risePrice,
-      risePricePerc,
-      amount,
-      sellAmount,
-      buyAmount,
-      maxPrice,
-      minPrice,
-      openPrice,
-      lastPrice,
+      currentPrice = '-',
+      risePrice = '+0',
+      risePricePerc = '+0%',
+      amount = '-',
+      sellAmount = '-',
+      buyAmount = '-',
+      maxPrice = '-',
+      minPrice = '-',
+      openPrice = '-',
+      lastPrice = '-',
       ticks
     } = await fetchStockData(stockId)
 
