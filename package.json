@@ -31,7 +31,7 @@
     "prettier": "^2.1.1"
   },
   "lint-staged": {
-    "*.{js}": [
+    "*.js": [
       "npm run prettier:check",
       "npm run lint"
     ]
