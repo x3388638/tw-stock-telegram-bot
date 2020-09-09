@@ -1,22 +1,20 @@
 import fetch from 'isomorphic-fetch'
 import { rawUrl } from '../../config'
 
-export const fetchStockData = async (stockId) => {
-  const res = await fetch(rawUrl.replace('STOCK_ID', stockId)).then((res) =>
-    res.text()
-  )
-  let parsedRes
+export const parseRaw = (res) => {
   try {
-    parsedRes = JSON.parse(
+    return JSON.parse(
       res
         .match(/({.*})/)[1]
         .replace(/:\s?((?:-)?[0-9.]+)[,}]/g, (m, t) => m.replace(t, `"${t}"`))
     )
   } catch {
-    return {}
+    return null
   }
+}
 
-  const { mem = {} } = parsedRes || {}
+export const stockDataNormalizer = (data) => {
+  const { mem = {}, id: stockId } = data || {}
   const name = mem.name
 
   if (!name) {
@@ -66,4 +64,18 @@ export const fetchStockData = async (stockId) => {
     lastPrice,
     ticks
   }
+}
+
+export const fetchStockData = async (stockId) => {
+  const res = await fetch(rawUrl.replace('STOCK_ID', stockId)).then((res) =>
+    res.text()
+  )
+  const parsedRes = parseRaw(res)
+  const result = stockDataNormalizer(parsedRes)
+
+  if (!result.name) {
+    return {}
+  }
+
+  return result
 }
