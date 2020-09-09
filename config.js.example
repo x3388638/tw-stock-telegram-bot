@@ -4,4 +4,9 @@ export const targetChart =
   'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/StxChart"]'
 export const rawUrl =
   'https://tw.quote.finance.yahoo.net/quote/q?type=tick&perd=1m&sym=STOCK_ID&callback='
-
+export const tseUrl = 'https://tw.stock.yahoo.com/s/tse.php'
+export const tseCahrt =
+  'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/TseChart"]'
+export const otcUrl = 'https://tw.stock.yahoo.com/s/otc.php'
+export const otcChart =
+  'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/TseChart"]'

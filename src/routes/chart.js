@@ -17,10 +17,7 @@ const handleLiveChart = (bot) => {
       return bot.sendMessage(chatId, `查無 ${stockId}，請確認此股票已上市/櫃`)
     }
 
-    const { message_id: processId } = await bot.sendMessage(
-      chatId,
-      '處理中，請稍候...'
-    )
+    const processId = await bot.sendLoadingMsg(chatId)
     const chartBuffer = await screenshot(stockId)
     bot.sendPhoto(chatId, chartBuffer)
     bot.deleteMessage(chatId, processId)
@@ -31,6 +28,15 @@ const handleLiveChart = (bot) => {
     bot.sendMessage(chatId, '請帶入股號\ne.g. `/chart 2330`', {
       parse_mode: 'Markdown'
     })
+  })
+
+  bot.onText(/\/chart_(otc|tse)$/, async (msg, match) => {
+    const chatId = msg.chat.id
+    const type = match[1].toUpperCase()
+    const processId = await bot.sendLoadingMsg(chatId)
+    const chartBuffer = await screenshot(type)
+    bot.sendPhoto(chatId, chartBuffer)
+    bot.deleteMessage(chatId, processId)
   })
 }
 
