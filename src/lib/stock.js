@@ -10,9 +10,7 @@ export const fetchStockData = async (stockId) => {
     parsedRes = JSON.parse(
       res
         .match(/({.*})/)[1]
-        .replace(/[^"0-9Ee.]([0-9\-.]+)[^"0-9Ee.]/g, (m, t) =>
-          m.replace(t, `"${t}"`)
-        )
+        .replace(/:\s?((?:-)?[0-9.]+)[,}]/g, (m, t) => m.replace(t, `"${t}"`))
     )
   } catch {
     return {}
@@ -37,7 +35,7 @@ export const fetchStockData = async (stockId) => {
   const openPrice = mem[126]
   const lastPrice = mem[129]
   let ticks = [
-    [mem[101], mem[113]],
+    [mem[101] > 100000 ? '市價' : mem[101], mem[113]],
     [mem[102], mem[114]],
     [mem[103], mem[115]],
     [mem[104], mem[116]],
