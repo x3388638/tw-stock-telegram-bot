@@ -1,5 +1,10 @@
 import screenshot from '../lib/screenshot'
 import { fetchStockData } from '../lib/stock'
+import { tseId, otcId } from '../../config'
+
+const getIcon = (val) => {
+  return val > 0 ? '🔼 ' : val < 0 ? '🔽 ' : ''
+}
 
 const handleLiveChart = (bot) => {
   bot.onText(/\/chart (.*)/, async (msg, match) => {
@@ -24,7 +29,7 @@ const handleLiveChart = (bot) => {
 
     const processId = await bot.sendLoadingMsg(chatId)
     const chartBuffer = await screenshot(stockId)
-    const icon = risePrice > 0 ? '🔼 ' : risePrice < 0 ? '🔽 ' : ''
+    const icon = getIcon(risePrice)
     bot.sendPhoto(chatId, chartBuffer, {
       caption: `${icon}${stockId} ${name} ${currentPrice} | ${risePrice} (${risePricePerc})`
     })
@@ -41,9 +46,17 @@ const handleLiveChart = (bot) => {
   bot.onText(/\/chart_(otc|tse)$/, async (msg, match) => {
     const chatId = msg.chat.id
     const type = match[1].toUpperCase()
+    const stockId = type === 'TSE' ? tseId : otcId
     const processId = await bot.sendLoadingMsg(chatId)
-    const chartBuffer = await screenshot(type)
-    bot.sendPhoto(chatId, chartBuffer)
+    const [stockData, chartBuffer] = await Promise.all([
+      fetchStockData(stockId),
+      screenshot(type)
+    ])
+    const { name, currentPrice, risePrice, risePricePerc } = stockData
+    const icon = getIcon(risePrice)
+    bot.sendPhoto(chatId, chartBuffer, {
+      caption: `${icon}${name} ${currentPrice} | ${risePrice} (${risePricePerc})`
+    })
     bot.deleteMessage(chatId, processId)
   })
 }

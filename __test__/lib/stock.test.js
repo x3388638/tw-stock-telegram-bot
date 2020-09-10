@@ -29,6 +29,7 @@ describe('lib/stock stockDataNormalizer()', () => {
       minPrice,
       openPrice,
       lastPrice,
+      turnover,
       ticks
     } = stockDataNormalizer(mockStockLimitUpData)
 
@@ -44,6 +45,7 @@ describe('lib/stock stockDataNormalizer()', () => {
     expect(minPrice).toBe('22.2')
     expect(openPrice).toBe(undefined)
     expect(lastPrice).toBe('22.6')
+    expect(turnover).toBe('9.75')
     expect(ticks[0][0]).toBe('市價')
   })
 })

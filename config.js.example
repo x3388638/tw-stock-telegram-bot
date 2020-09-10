@@ -10,3 +10,5 @@ export const tseCahrt =
 export const otcUrl = 'https://tw.stock.yahoo.com/s/otc.php'
 export const otcChart =
   'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/TseChart"]'
+export const tseId = '%23001'
+export const otcId = '%23026'
