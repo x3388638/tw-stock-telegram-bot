@@ -7,6 +7,8 @@ const startHandler = (bot) => {
 
 服務項目:
 \`/chart 2330\` - 查詢盤中即時走勢圖
+/chart_tse - 查詢盤中加權指數走勢圖
+/chart_otc - 查詢盤中櫃買指數走勢圖
 \`/text 2330\` - 查詢盤中即時價量及五檔
 
 資料來源: [Yahoo!奇摩股市](https://tw.stock.yahoo.com/)`,
