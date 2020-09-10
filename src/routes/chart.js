@@ -12,14 +12,22 @@ const handleLiveChart = (bot) => {
       })
     }
 
-    const { name } = await fetchStockData(stockId)
+    const {
+      name,
+      currentPrice,
+      risePrice,
+      risePricePerc
+    } = await fetchStockData(stockId)
     if (!name) {
       return bot.sendMessage(chatId, `查無 ${stockId}，請確認此股票已上市/櫃`)
     }
 
     const processId = await bot.sendLoadingMsg(chatId)
     const chartBuffer = await screenshot(stockId)
-    bot.sendPhoto(chatId, chartBuffer)
+    const icon = risePrice > 0 ? '🔼 ' : risePrice < 0 ? '🔽 ' : ''
+    bot.sendPhoto(chatId, chartBuffer, {
+      caption: `${icon}${stockId} ${name} ${currentPrice} | ${risePrice} (${risePricePerc})`
+    })
     bot.deleteMessage(chatId, processId)
   })
 
