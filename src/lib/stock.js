@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { rawUrl } from '../../config'
+import { stockRawUrl } from '../../config'
 
 export const parseRaw = (res) => {
   try {
@@ -69,9 +69,9 @@ export const stockDataNormalizer = (data) => {
 }
 
 export const fetchStockData = async (stockId) => {
-  const res = await fetch(rawUrl.replace('STOCK_ID', stockId)).then((res) =>
-    res.text()
-  )
+  const res = await fetch(
+    stockRawUrl.replace('STOCK_ID', stockId)
+  ).then((res) => res.text())
   const parsedRes = parseRaw(res)
   const result = stockDataNormalizer(parsedRes)
 

@@ -1,11 +1,11 @@
 import puppeteer from 'puppeteer'
 import {
-  targetUrl,
-  targetChart,
-  tseUrl,
-  tseCahrt,
-  otcUrl,
-  otcChart
+  chartUrl,
+  chartLocator,
+  tseChartUrl,
+  tseCahrtLocator,
+  otcChartUrl,
+  otcChartLocator
 } from '../../config'
 
 const screenshot = async (stockId) => {
@@ -14,19 +14,19 @@ const screenshot = async (stockId) => {
     args: ['--no-sandbox']
   })
   const page = await browser.newPage()
-  let url = targetUrl.replace('STOCK_ID', stockId)
-  let chart = targetChart
+  let url = chartUrl.replace('STOCK_ID', stockId)
+  let chart = chartLocator
 
   switch (stockId) {
     case 'TSE': {
-      url = tseUrl
-      chart = tseCahrt
+      url = tseChartUrl
+      chart = tseCahrtLocator
       break
     }
 
     case 'OTC': {
-      url = otcUrl
-      chart = otcChart
+      url = otcChartUrl
+      chart = otcChartLocator
       break
     }
   }

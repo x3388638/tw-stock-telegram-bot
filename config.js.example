@@ -1,14 +1,42 @@
+/**
+ * telegram bot
+ */
 export const botToken = 'TELEGRAM_BOT_TOKEN'
-export const targetUrl = 'https://tw.stock.yahoo.com/q/bc?s=STOCK_ID'
-export const targetChart =
+
+/**
+ * stock chart
+ */
+export const chartUrl = 'https://tw.stock.yahoo.com/q/bc?s=STOCK_ID'
+export const chartLocator =
   'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/StxChart"]'
-export const rawUrl =
+
+/**
+ * index chart
+ */
+export const tseChartUrl = 'https://tw.stock.yahoo.com/s/tse.php'
+export const tseCahrtLocator =
+  'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/TseChart"]'
+export const otcChartUrl = 'https://tw.stock.yahoo.com/s/otc.php'
+export const otcChartLocator =
+  'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/TseChart"]'
+
+/**
+ * stock/index raw data
+ */
+export const stockRawUrl =
   'https://tw.quote.finance.yahoo.net/quote/q?type=tick&perd=1m&sym=STOCK_ID&callback='
-export const tseUrl = 'https://tw.stock.yahoo.com/s/tse.php'
-export const tseCahrt =
-  'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/TseChart"]'
-export const otcUrl = 'https://tw.stock.yahoo.com/s/otc.php'
-export const otcChart =
-  'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/TseChart"]'
+
+/**
+ * stock/index candlestick
+ */
+export const stockCandlestickUrl = 'https://tw.stock.yahoo.com/q/ta?s=STOCK_ID'
+export const tseCandlestickUrl = 'https://tw.stock.yahoo.com/t/idx.php'
+export const otcCandlestickUrl = 'https://tw.stock.yahoo.com/t/otc.php'
+export const candlestickLocator =
+  'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart"]'
+
+/**
+ * misc
+ */
 export const tseId = '%23001'
 export const otcId = '%23026'
