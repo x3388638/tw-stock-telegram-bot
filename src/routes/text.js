@@ -1,4 +1,4 @@
-import { fetchStockData } from '../lib/stock'
+import { fetchStockData, isStockIdValid } from '../lib/stock'
 import { tseId, otcId } from '../../config'
 import { getIndexHTMLTemplate, getStockHTMLTemplate } from '../lib/template'
 
@@ -7,7 +7,7 @@ const handleLiveText = (bot) => {
     const chatId = msg.chat.id
     const stockId = match[1]
 
-    if (!/^[0-9_A-Z]+$/.test(stockId)) {
+    if (!isStockIdValid(stockId)) {
       return bot.sendMessage(chatId, '請輸入有效股號\ne.g. `/text 2330`', {
         parse_mode: 'Markdown'
       })

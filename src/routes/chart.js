@@ -1,5 +1,5 @@
 import screenshot from '../lib/screenshot'
-import { fetchStockData } from '../lib/stock'
+import { fetchStockData, isStockIdValid } from '../lib/stock'
 import { tseId, otcId } from '../../config'
 
 const getIcon = (val) => {
@@ -11,7 +11,7 @@ const handleLiveChart = (bot) => {
     const chatId = msg.chat.id
     const stockId = match[1]
 
-    if (!/^[0-9_A-Z]+$/.test(stockId)) {
+    if (!isStockIdValid(stockId)) {
       return bot.sendMessage(chatId, '請輸入有效股號\ne.g. `/chart 2330`', {
         parse_mode: 'Markdown'
       })
@@ -28,7 +28,7 @@ const handleLiveChart = (bot) => {
     }
 
     const processId = await bot.sendLoadingMsg(chatId)
-    const chartBuffer = await screenshot(stockId)
+    const chartBuffer = await screenshot(stockId, { type: 'chart' })
     const icon = getIcon(risePrice)
     bot.sendPhoto(chatId, chartBuffer, {
       caption: `${icon}${stockId} ${name} ${currentPrice} | ${risePrice} (${risePricePerc})`
@@ -50,7 +50,7 @@ const handleLiveChart = (bot) => {
     const processId = await bot.sendLoadingMsg(chatId)
     const [stockData, chartBuffer] = await Promise.all([
       fetchStockData(stockId),
-      screenshot(type)
+      screenshot(type, { type: 'chart' })
     ])
     const { name, currentPrice, risePrice, risePricePerc } = stockData
     const icon = getIcon(risePrice)

@@ -1,6 +1,10 @@
 import fetch from 'isomorphic-fetch'
 import { stockRawUrl } from '../../config'
 
+export const isStockIdValid = (stockId) => {
+  return /^[0-9A-Z]+$/.test(stockId)
+}
+
 export const parseRaw = (res) => {
   try {
     return JSON.parse(

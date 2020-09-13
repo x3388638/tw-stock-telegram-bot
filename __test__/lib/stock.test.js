@@ -1,6 +1,10 @@
 import fs from 'fs'
 import path from 'path'
-import { parseRaw, stockDataNormalizer } from '../../src/lib/stock'
+import {
+  parseRaw,
+  stockDataNormalizer,
+  isStockIdValid
+} from '../../src/lib/stock'
 import mockStockLimitUpData from '../mock/stock_limit_up.json'
 
 describe('lib/stock parseRaw()', () => {
@@ -47,5 +51,17 @@ describe('lib/stock stockDataNormalizer()', () => {
     expect(lastPrice).toBe('22.6')
     expect(turnover).toBe('9.75')
     expect(ticks[0][0]).toBe('市價')
+  })
+})
+
+describe('lib/stock isStockIdValid()', () => {
+  it('should check if stock ID is valid correctly', () => {
+    expect(isStockIdValid('2330')).toEqual(true)
+    expect(isStockIdValid('00692')).toEqual(true)
+    expect(isStockIdValid('00642U')).toEqual(true)
+    expect(isStockIdValid('00632R')).toEqual(true)
+    expect(isStockIdValid('00632r')).toEqual(false)
+    expect(isStockIdValid('')).toEqual(false)
+    expect(isStockIdValid('00_50')).toEqual(false)
   })
 })
