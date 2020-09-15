@@ -5,6 +5,9 @@
 - [ ] 營收
 - [x] `/text_otc` (帶文字說明)
 - [x] `/text_tse` (帶文字說明)
-- [ ] 近月 K 線
+- [x] `/k stockId`
+- [x] `/k_otc`
+- [x] `/k_tse`
 - [x] `/chart stockId` 附帶說明文字
 - [ ] 分時明細
+- [ ] 相關新聞

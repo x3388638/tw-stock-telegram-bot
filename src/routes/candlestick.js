@@ -23,6 +23,23 @@ const handleCandlestick = (bot) => {
     bot.sendPhoto(chatId, chartBuffer)
     bot.deleteMessage(chatId, processId)
   })
+
+  bot.onText(/\/[K|k]$/, (msg) => {
+    const chatId = msg.chat.id
+    bot.sendMessage(chatId, '請帶入股號\ne.g. `/k 2330`', {
+      parse_mode: 'Markdown'
+    })
+  })
+
+  bot.onText(/\/k_(otc|tse)$/, async (msg, match) => {
+    const chatId = msg.chat.id
+    const type = match[1].toUpperCase()
+    const processId = await bot.sendLoadingMsg(chatId)
+    const chartBuffer = await screenshot(type, { type: 'candlestick' })
+
+    bot.sendPhoto(chatId, chartBuffer)
+    bot.deleteMessage(chatId, processId)
+  })
 }
 
 export default handleCandlestick
