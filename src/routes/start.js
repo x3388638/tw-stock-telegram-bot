@@ -20,6 +20,9 @@ const startHandler = (bot) => {
 /k_tse - 查詢加權指數近期 K 線
 /k_otc - 查詢櫃買指數近期 K 線
 
+<b>其他</b>
+<code>/news 2330</code> - 查詢指定股票相關新聞
+
 資料來源: <a href="https://tw.stock.yahoo.com/">Yahoo!奇摩股市</a>`,
       {
         parse_mode: 'HTML',
