@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "isomorphic-fetch": "^2.2.1",
     "node-telegram-bot-api": "^0.50.0",
     "puppeteer": "^5.2.1"
