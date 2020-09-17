@@ -1,19 +1,38 @@
 import { isStockIdValid, fetchStockNews } from '../lib/stock'
+import { getNewsListHTMLTemplate } from '../lib/template'
 
 const handleStockNews = (bot) => {
   bot.onText(/\/news (.*)/, async (msg, match) => {
     const chatId = msg.chat.id
     const stockId = match[1]
 
-    if (!isStockIdValid) {
+    if (!isStockIdValid(stockId)) {
       return bot.sendMessage(chatId, '請輸入有效股號\ne.g. `/news 2330`', {
         parse_mode: 'Markdown'
       })
     }
 
     const newsList = await fetchStockNews(stockId)
-    console.log(newsList)
-    bot.sendMessage(chatId, 'TODO') // FIXME
+    if (!newsList) {
+      return bot.sendMessage(chatId, `查無 ${stockId}，請確認此股票已上市/櫃`)
+    }
+
+    if (!newsList.length) {
+      return bot.sendMessage(chatId, `查無 ${stockId} 相關新聞`)
+    }
+
+    const HTML = getNewsListHTMLTemplate(newsList)
+    bot.sendMessage(chatId, HTML, {
+      parse_mode: 'HTML',
+      disable_web_page_preview: true
+    })
+  })
+
+  bot.onText(/\/news$/, (msg) => {
+    const chatId = msg.chat.id
+    bot.sendMessage(chatId, '請帶入股號\ne.g. `/news 2330`', {
+      parse_mode: 'Markdown'
+    })
   })
 }
 

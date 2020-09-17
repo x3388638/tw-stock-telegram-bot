@@ -36,11 +36,6 @@ export const candlestickLocator =
   'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart"]'
 
 /**
- * stock related news
- */
-export const stockNewsUrl = 'https://tw.stock.yahoo.com/q/h?s=STOCK_ID'
-
-/**
  * misc
  */
 export const tseId = '%23001'

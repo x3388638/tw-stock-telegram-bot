@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import cheerio from 'cheerio'
-import { stockRawUrl, stockNewsUrl } from '../../config'
+import { stockRawUrl } from '../../config'
 
 export const isStockIdValid = (stockId) => {
   return /^[0-9A-Z]+$/.test(stockId)
@@ -140,8 +140,8 @@ export const fetchStockData = async (stockId) => {
  * @returns {(NewsItem[]|null)}
  */
 export const fetchStockNews = async (stockId) => {
-  const res = await fetch(stockNewsUrl.replace('STOCK_ID', stockId))
-  if (!res || !res.ok || res.redirected) {
+  const res = await fetch(`https://tw.stock.yahoo.com/q/h?s=${stockId}`)
+  if (!res || !res.ok || !/tw\.stock\.yahoo\.com\/q\/h\?s=/.test(res.url)) {
     return null
   }
 

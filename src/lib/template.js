@@ -47,3 +47,11 @@ ${ticks
 </pre>
 `
 }
+
+export const getNewsListHTMLTemplate = (list) => {
+  return list
+    .map(
+      ({ title, link, source }) => `<a href="${link}">${title}</a>\n${source}\n`
+    )
+    .join('\n')
+}
