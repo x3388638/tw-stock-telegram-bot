@@ -8,7 +8,7 @@ const queryHandlers = {
 const handleAfterHours = (bot) => {
   bot.onText(/\/after_hours$/, (msg) => {
     const chatId = msg.chat.id
-    bot.sendMessage(chatId, '請選擇所需資料', {
+    bot.sendMessage(chatId, '查詢盤後資料：', {
       reply_markup: {
         inline_keyboard: [
           [
