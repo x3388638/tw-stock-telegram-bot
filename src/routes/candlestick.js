@@ -1,5 +1,11 @@
 import { fetchStockData, isStockIdValid } from '../lib/stock'
 import screenshot from '../lib/screenshot'
+import {
+  candlestickLocator,
+  stockCandlestickUrl,
+  tseCandlestickUrl,
+  otcCandlestickUrl
+} from '../../config'
 
 const handleCandlestick = (bot) => {
   bot.onText(/\/[K|k] (.*)/, async (msg, match) => {
@@ -18,7 +24,9 @@ const handleCandlestick = (bot) => {
     }
 
     const processId = await bot.sendLoadingMsg(chatId)
-    const chartBuffer = await screenshot(stockId, { type: 'candlestick' })
+    const locator = candlestickLocator
+    const url = stockCandlestickUrl.replace('STOCK_ID', stockId)
+    const chartBuffer = await screenshot(url, locator)
 
     bot.sendPhoto(chatId, chartBuffer)
     bot.deleteMessage(chatId, processId)
@@ -35,7 +43,9 @@ const handleCandlestick = (bot) => {
     const chatId = msg.chat.id
     const type = match[1].toUpperCase()
     const processId = await bot.sendLoadingMsg(chatId)
-    const chartBuffer = await screenshot(type, { type: 'candlestick' })
+    const url = type === 'TSE' ? tseCandlestickUrl : otcCandlestickUrl
+    const locator = candlestickLocator
+    const chartBuffer = await screenshot(url, locator)
 
     bot.sendPhoto(chatId, chartBuffer)
     bot.deleteMessage(chatId, processId)

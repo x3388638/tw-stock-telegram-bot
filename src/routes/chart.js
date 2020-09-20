@@ -1,6 +1,15 @@
 import screenshot from '../lib/screenshot'
 import { fetchStockData, isStockIdValid } from '../lib/stock'
-import { tseId, otcId } from '../../config'
+import {
+  tseId,
+  otcId,
+  chartUrl,
+  chartLocator,
+  tseCahrtLocator,
+  otcChartLocator,
+  tseChartUrl,
+  otcChartUrl
+} from '../../config'
 
 const getIcon = (val) => {
   return val > 0 ? '🔼 ' : val < 0 ? '🔽 ' : ''
@@ -28,7 +37,9 @@ const handleLiveChart = (bot) => {
     }
 
     const processId = await bot.sendLoadingMsg(chatId)
-    const chartBuffer = await screenshot(stockId, { type: 'chart' })
+    const url = chartUrl.replace('STOCK_ID', stockId)
+    const locator = chartLocator
+    const chartBuffer = await screenshot(url, locator)
     const icon = getIcon(risePrice)
     bot.sendPhoto(chatId, chartBuffer, {
       caption: `${icon}${stockId} ${name} ${currentPrice} | ${risePrice} (${risePricePerc})`
@@ -46,11 +57,22 @@ const handleLiveChart = (bot) => {
   bot.onText(/\/chart_(otc|tse)$/, async (msg, match) => {
     const chatId = msg.chat.id
     const type = match[1].toUpperCase()
-    const stockId = type === 'TSE' ? tseId : otcId
+    let stockId, url, locator
+
+    if (type === 'TSE') {
+      stockId = tseId
+      url = tseChartUrl
+      locator = tseCahrtLocator
+    } else {
+      stockId = otcId
+      url = otcChartUrl
+      locator = otcChartLocator
+    }
+
     const processId = await bot.sendLoadingMsg(chatId)
     const [stockData, chartBuffer] = await Promise.all([
       fetchStockData(stockId),
-      screenshot(type, { type: 'chart' })
+      screenshot(url, locator)
     ])
     const { name, currentPrice, risePrice, risePricePerc } = stockData
     const icon = getIcon(risePrice)
