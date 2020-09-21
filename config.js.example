@@ -43,6 +43,14 @@ export const investmentTrustStartBuyingUrl =
 export const investmentTrustStartBuyingTableLocator = '#tblStockList'
 
 /**
+ * Institutional investors daily buy rank
+ */
+export const investmentTrustDailyBuyUrl =
+  'https://www.twse.com.tw/zh/page/trading/fund/TWT44U.html'
+export const investmentTrustDailyBuyDateLocator = '#reports .title'
+export const investmentTrustDailyBuyTableLocator = '#report-table'
+
+/**
  * misc
  */
 export const tseId = '%23001'
