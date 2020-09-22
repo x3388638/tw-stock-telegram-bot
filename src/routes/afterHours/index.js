@@ -1,13 +1,19 @@
 import {
   INVESTMENT_TRUST_START_BUYING,
-  INVESTMENT_TRUST_DAILY_BUY_RANK
+  INVESTMENT_TRUST_DAILY_BUY_RANK,
+  FOREIGN_INVESTOR_DAILY_BUY_RANK
 } from './actions'
 import handleInvestmentTruseStartBuying from './investmentTruseStartBuying'
-import handleInvestmentTrustDailyBuyRank from './investmentTrustDailyBuyRank'
+import handleInstitutionalInvestorDailyBuyRank from './institutionalInvestorDailyBuyRank'
 
 const queryHandlers = {
   INVESTMENT_TRUST_START_BUYING: handleInvestmentTruseStartBuying,
-  INVESTMENT_TRUST_DAILY_BUY_RANK: handleInvestmentTrustDailyBuyRank
+  INVESTMENT_TRUST_DAILY_BUY_RANK: handleInstitutionalInvestorDailyBuyRank(
+    INVESTMENT_TRUST_DAILY_BUY_RANK
+  ),
+  FOREIGN_INVESTOR_DAILY_BUY_RANK: handleInstitutionalInvestorDailyBuyRank(
+    FOREIGN_INVESTOR_DAILY_BUY_RANK
+  )
 }
 
 const handleAfterHours = (bot) => {
@@ -17,6 +23,10 @@ const handleAfterHours = (bot) => {
       reply_markup: {
         inline_keyboard: [
           [
+            {
+              text: '外資買超排行',
+              callback_data: FOREIGN_INVESTOR_DAILY_BUY_RANK
+            },
             {
               text: '投信買超排行',
               callback_data: INVESTMENT_TRUST_DAILY_BUY_RANK
@@ -32,6 +42,7 @@ const handleAfterHours = (bot) => {
       }
     })
 
+    // FIXME: will bind event multi times
     bot.on('callback_query', (query) => {
       queryHandlers[query.data](bot, query)
     })
