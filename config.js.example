@@ -50,6 +50,11 @@ export const investmentTrustDailyBuyUrl =
 export const investmentTrustDailyBuyDateLocator = '#reports .title'
 export const investmentTrustDailyBuyTableLocator = '#report-table'
 
+export const foreignInvestorDailyBuyUrl =
+  'https://www.twse.com.tw/zh/page/trading/fund/TWT38U.html'
+export const foreignInvestorDailyBuyDateLocator = '#reports .title'
+export const foreignInvestorDailyBuyTableLocator = '#report-table'
+
 /**
  * misc
  */
