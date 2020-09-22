@@ -1,4 +1,4 @@
-import screenshot from '../lib/screenshot'
+import { screenshot } from '../lib/page'
 import { fetchStockData, isStockIdValid } from '../lib/stock'
 import {
   tseId,

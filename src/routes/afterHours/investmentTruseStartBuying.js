@@ -1,4 +1,4 @@
-import screenshot from '../../lib/screenshot'
+import { screenshot } from '../../lib/page'
 import {
   investmentTrustStartBuyingTableLocator as locator,
   investmentTrustStartBuyingUrl as url

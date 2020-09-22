@@ -1,4 +1,4 @@
-import screenshot from '../../lib/screenshot'
+import { screenshot, getElementInnerText } from '../../lib/page'
 import {
   investmentTrustDailyBuyUrl,
   foreignInvestorDailyBuyUrl,
@@ -35,19 +35,15 @@ const handleInstitutionalInvestorDailyBuyRank = (
     }
   }
 
-  const [dateBuffer, tableBuffer] = await Promise.all([
-    screenshot(url, dateLocator, {
-      waitFor: dateLocator
-    }),
+  const [date, tableBuffer] = await Promise.all([
+    getElementInnerText(url, dateLocator),
     screenshot(url, tableLocator, {
       waitFor: tableLocator
     })
   ])
 
-  // TODO: error handling
-  const { message_id: dataMsgId } = await bot.sendPhoto(chatId, dateBuffer)
   bot.sendPhoto(chatId, tableBuffer, {
-    reply_to_message_id: dataMsgId
+    caption: date
   })
   bot.deleteMessage(chatId, processId)
 }

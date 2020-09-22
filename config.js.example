@@ -47,12 +47,12 @@ export const investmentTrustStartBuyingTableLocator = '#tblStockList'
  */
 export const investmentTrustDailyBuyUrl =
   'https://www.twse.com.tw/zh/page/trading/fund/TWT44U.html'
-export const investmentTrustDailyBuyDateLocator = '#reports .title'
+export const investmentTrustDailyBuyDateLocator = '#reports .title h1'
 export const investmentTrustDailyBuyTableLocator = '#report-table'
 
 export const foreignInvestorDailyBuyUrl =
   'https://www.twse.com.tw/zh/page/trading/fund/TWT38U.html'
-export const foreignInvestorDailyBuyDateLocator = '#reports .title'
+export const foreignInvestorDailyBuyDateLocator = '#reports .title h1'
 export const foreignInvestorDailyBuyTableLocator = '#report-table'
 
 /**

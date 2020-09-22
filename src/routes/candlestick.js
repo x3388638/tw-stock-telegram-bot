@@ -1,5 +1,5 @@
 import { fetchStockData, isStockIdValid } from '../lib/stock'
-import screenshot from '../lib/screenshot'
+import { screenshot } from '../lib/page'
 import {
   candlestickLocator,
   stockCandlestickUrl,
