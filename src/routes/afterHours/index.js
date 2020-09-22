@@ -6,7 +6,7 @@ import {
 import handleInvestmentTruseStartBuying from './investmentTruseStartBuying'
 import handleInstitutionalInvestorDailyBuyRank from './institutionalInvestorDailyBuyRank'
 
-const queryHandlers = {
+export const afterHoursCallbackQueryHandlers = {
   INVESTMENT_TRUST_START_BUYING: handleInvestmentTruseStartBuying,
   INVESTMENT_TRUST_DAILY_BUY_RANK: handleInstitutionalInvestorDailyBuyRank(
     INVESTMENT_TRUST_DAILY_BUY_RANK
@@ -40,11 +40,6 @@ const handleAfterHours = (bot) => {
           ]
         ]
       }
-    })
-
-    // FIXME: will bind event multi times
-    bot.on('callback_query', (query) => {
-      queryHandlers[query.data](bot, query)
     })
   })
 }

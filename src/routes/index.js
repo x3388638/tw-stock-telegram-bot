@@ -4,6 +4,7 @@ import text from './text'
 import candlestick from './candlestick'
 import stockNews from './news'
 import afterHours from './afterHours'
+import callbackQuery from './callbackQuery'
 
 const setup = (bot) => {
   start(bot)
@@ -12,6 +13,7 @@ const setup = (bot) => {
   candlestick(bot)
   stockNews(bot)
   afterHours(bot)
+  callbackQuery(bot)
 }
 
 export default {
