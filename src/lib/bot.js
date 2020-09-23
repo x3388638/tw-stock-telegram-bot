@@ -6,7 +6,9 @@ const bot = new TelegramBot(botToken, {
 })
 
 bot.sendLoadingMsg = async (chatId) => {
-  const { message_id } = await bot.sendMessage(chatId, '處理中，請稍候...')
+  const { message_id } = await bot.sendMessage(chatId, '處理中，請稍候...', {
+    disable_notification: true
+  })
 
   return message_id
 }
