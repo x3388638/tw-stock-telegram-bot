@@ -18,7 +18,7 @@
   - [x] tse text
   - [x] otc text
   - [x] stock news
-  - [ ] stock text
+  - [x] stock text
 
 ## note
-to use inline mode, reach out to botFather to enable the function
+to use inline mode, reach out to botFather to enable the function and set placeholder

@@ -1,5 +1,9 @@
 import { fetchStockData, fetchStockNews, isStockIdValid } from '../lib/stock'
-import { getIndexHTMLTemplate, getNewsListHTMLTemplate } from '../lib/template'
+import {
+  getIndexHTMLTemplate,
+  getNewsListHTMLTemplate,
+  getStockHTMLTemplate
+} from '../lib/template'
 import { tseId, otcId } from '../../config'
 
 const handleInlineQuery = (bot) => {
@@ -38,20 +42,41 @@ const handleInlineQuery = (bot) => {
       )
     } else {
       if (isStockIdValid(query)) {
-        const newsList = await fetchStockNews(query)
+        const result = []
+        const [newsList, stockData] = await Promise.all([
+          fetchStockNews(query),
+          fetchStockData(query)
+        ])
+
+        if (stockData.name) {
+          result.push({
+            type: 'article',
+            title: `${query} 報價及五檔`,
+            input_message_content: {
+              message_text: getStockHTMLTemplate(stockData),
+              parse_mode: 'HTML'
+            },
+            id: `text_${query}`
+          })
+        }
+
         if (newsList && newsList.length) {
-          bot.answerInlineQuery(id, [
-            {
-              type: 'article',
-              title: `${query} 相關新聞`,
-              input_message_content: {
-                message_text: getNewsListHTMLTemplate(newsList),
-                parse_mode: 'HTML',
-                disable_web_page_preview: true
-              },
-              id: `news_${query}`
-            }
-          ])
+          result.push({
+            type: 'article',
+            title: `${query} 相關新聞`,
+            input_message_content: {
+              message_text: getNewsListHTMLTemplate(newsList),
+              parse_mode: 'HTML',
+              disable_web_page_preview: true
+            },
+            id: `news_${query}`
+          })
+        }
+
+        if (result.length) {
+          bot.answerInlineQuery(id, result, {
+            cache_time: 0
+          })
         }
       }
     }
