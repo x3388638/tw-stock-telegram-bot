@@ -14,3 +14,10 @@
 - [x] `/chart stockId` 附帶說明文字
 - [ ] 分時明細
 - [x] 相關新聞
+- [ ] inline mode
+  - [x] tse text
+  - [x] otc text
+  - [ ] stock news
+
+## note
+to use inline mode, reach out to botFather to enable the function
