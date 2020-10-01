@@ -13,4 +13,8 @@ bot.sendLoadingMsg = async (chatId) => {
   return message_id
 }
 
+bot.sendStockIdNotFoundError = (chatId, stockId) => {
+  bot.sendMessage(chatId, `查無 ${stockId}，請確認此股票已上市/櫃`)
+}
+
 export default bot

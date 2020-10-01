@@ -55,3 +55,23 @@ export const getNewsListHTMLTemplate = (list) => {
     )
     .join('\n')
 }
+
+const getUpDownIcon = (val) => {
+  return val > 0 ? '🔼 ' : val < 0 ? '🔽 ' : ''
+}
+
+export const getStockCaptionTextTemplate = (stockData) => {
+  const { stockId, name, currentPrice, risePrice, risePricePerc } = stockData
+
+  const icon = getUpDownIcon(risePrice)
+
+  return `${icon}${stockId} ${name} ${currentPrice} | ${risePrice} (${risePricePerc})`
+}
+
+export const getIndexCaptionTextTemplate = (stockData) => {
+  const { name, currentPrice, risePrice, risePricePerc } = stockData
+
+  const icon = getUpDownIcon(risePrice)
+
+  return `${icon}${name} ${currentPrice} | ${risePrice} (${risePricePerc})`
+}

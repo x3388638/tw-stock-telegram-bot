@@ -16,7 +16,7 @@ const handleLiveText = (bot) => {
     const stockData = await fetchStockData(stockId)
 
     if (!stockData.name) {
-      return bot.sendMessage(chatId, `查無 ${stockId}，請確認此股票已上市/櫃`)
+      return bot.sendStockIdNotFoundError(chatId, stockId)
     }
 
     const HTML = getStockHTMLTemplate(stockData)

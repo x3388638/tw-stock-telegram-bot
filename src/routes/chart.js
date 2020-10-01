@@ -10,10 +10,10 @@ import {
   tseChartUrl,
   otcChartUrl
 } from '../../config'
-
-const getIcon = (val) => {
-  return val > 0 ? '🔼 ' : val < 0 ? '🔽 ' : ''
-}
+import {
+  getStockCaptionTextTemplate,
+  getIndexCaptionTextTemplate
+} from '../lib/template'
 
 const handleLiveChart = (bot) => {
   bot.onText(/\/chart (.*)/, async (msg, match) => {
@@ -26,23 +26,17 @@ const handleLiveChart = (bot) => {
       })
     }
 
-    const {
-      name,
-      currentPrice,
-      risePrice,
-      risePricePerc
-    } = await fetchStockData(stockId)
-    if (!name) {
-      return bot.sendMessage(chatId, `查無 ${stockId}，請確認此股票已上市/櫃`)
+    const stockData = await fetchStockData(stockId)
+    if (!stockData.name) {
+      return bot.sendStockIdNotFoundError(chatId, stockId)
     }
 
     const processId = await bot.sendLoadingMsg(chatId)
     const url = chartUrl.replace('STOCK_ID', stockId)
     const locator = chartLocator
     const chartBuffer = await screenshot(url, locator)
-    const icon = getIcon(risePrice)
     bot.sendPhoto(chatId, chartBuffer, {
-      caption: `${icon}${stockId} ${name} ${currentPrice} | ${risePrice} (${risePricePerc})`
+      caption: getStockCaptionTextTemplate(stockData)
     })
     bot.deleteMessage(chatId, processId)
   })
@@ -74,10 +68,8 @@ const handleLiveChart = (bot) => {
       fetchStockData(stockId),
       screenshot(url, locator)
     ])
-    const { name, currentPrice, risePrice, risePricePerc } = stockData
-    const icon = getIcon(risePrice)
     bot.sendPhoto(chatId, chartBuffer, {
-      caption: `${icon}${name} ${currentPrice} | ${risePrice} (${risePricePerc})`
+      caption: getIndexCaptionTextTemplate(stockData)
     })
     bot.deleteMessage(chatId, processId)
   })

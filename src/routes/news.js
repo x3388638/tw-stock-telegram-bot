@@ -14,7 +14,7 @@ const handleStockNews = (bot) => {
 
     const newsList = await fetchStockNews(stockId)
     if (!newsList) {
-      return bot.sendMessage(chatId, `查無 ${stockId}，請確認此股票已上市/櫃`)
+      return bot.sendStockIdNotFoundError(chatId, stockId)
     }
 
     if (!newsList.length) {

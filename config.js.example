@@ -36,6 +36,14 @@ export const candlestickLocator =
   'iframe[src^="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart"]'
 
 /**
+ * stock after hours data
+ */
+export const stockAfterHoursUrl =
+  'https://tw.screener.finance.yahoo.net/screener/screen02.html?symid=STOCK_ID'
+export const stockAfterHoursLocator =
+  'body >table > tbody > tr > td > table:nth-child(7)'
+
+/**
  * Investment truse start buying
  */
 export const investmentTrustStartBuyingUrl =

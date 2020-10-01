@@ -20,7 +20,7 @@ const handleCandlestick = (bot) => {
 
     const { name } = await fetchStockData(stockId)
     if (!name) {
-      return bot.sendMessage(chatId, `查無 ${stockId}，請確認此股票已上市/櫃`)
+      return bot.sendStockIdNotFoundError(chatId, stockId)
     }
 
     const processId = await bot.sendLoadingMsg(chatId)
