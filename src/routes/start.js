@@ -22,6 +22,7 @@ const handleStart = (bot) => {
 
 <b>盤後資料</b>
 /after_hours - 查詢各式盤後資料
+<code>/after_hours 2330</code> - 查詢個股盤後資料
 
 <b>其他</b>
 <code>/news 2330</code> - 查詢指定股票相關新聞

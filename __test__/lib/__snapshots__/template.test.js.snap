@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/template getIndexCaptionTextTemplate() it should return correct template 1`] = `"🔼 元晶 24.85 | +2.25 (+9.96%)"`;
+
+exports[`lib/template getIndexHTMLTemplate() should return correct template 1`] = `
+"<b>元晶</b> 24.85 | +2.25 (+9.96%)
+成交金額 9.75 億"
+`;
+
+exports[`lib/template getNewsListHTMLTemplate() it should return correct template 1`] = `
+"<a href=\\"https://tw.stock.yahoo.com/news/%E5%8F%B0%E7%81%A3%E5%8D%8A%E5%B0%8E%E9%AB%94%E7%94%A2%E6%A5%AD%E5%85%A8%E7%90%83%E7%AC%AC2-%E5%88%86%E6%9E%90%E5%B8%AB-%E8%81%9A%E8%90%BD%E5%AE%8C%E6%95%B4%E6%98%AF%E5%84%AA%E5%8B%A2-113821001.html\\">台灣半導體產業全球第2  分析師：聚落完整是優勢</a>
+(2020/10/01 中央社)
+
+<a href=\\"https://tw.stock.yahoo.com/news/%E6%96%B0%E5%8F%B0%E5%B9%A3%E6%80%A5%E5%8D%87-%E7%A7%91%E6%8A%80%E5%BB%A0%E6%86%82%E5%8C%AF%E6%90%8D%E8%A1%9D%E6%93%8A%E7%AC%AC3%E5%AD%A3%E7%8D%B2%E5%88%A9-095220930.html\\">新台幣急升 科技廠憂匯損衝擊第3季獲利</a>
+(2020/10/01 中央社)
+
+<a href=\\"https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1%E7%9B%A4%E5%BE%8C-%E5%8F%B0%E8%82%A1%E7%A7%8B%E7%AF%80%E5%89%8D%E7%8B%B9%E5%B9%85%E9%9C%87%E7%95%B6-%E4%BB%8D%E5%9B%9E12500%E9%BB%9E%E4%B9%8B%E4%B8%8A-061635774.html\\">【台股盤後】台股秋節前狹幅震當 仍回12500點之上</a>
+(2020/09/30 中央社)
+
+<a href=\\"https://tw.stock.yahoo.com/news/%E7%AB%B9%E7%A7%91%E6%9C%AA%E5%8F%97%E5%9C%B0%E9%9C%87%E5%BD%B1%E9%9F%BF-%E5%8F%B0%E7%A9%8D%E9%9B%BB%E5%BB%A0%E5%8D%80%E7%87%9F%E9%81%8B%E6%AD%A3%E5%B8%B8-051429015.html\\">竹科未受地震影響  台積電廠區營運正常</a>
+(2020/09/30 中央社)
+
+<a href=\\"https://tw.stock.yahoo.com/news/%E5%8F%B0%E7%A9%8D%E9%9B%BB%E5%90%AB%E9%8A%85%E5%BB%A2%E6%B6%B2%E5%86%8D%E7%94%9F%E6%8A%80%E8%A1%93-%E5%B9%B4%E5%89%B5%E9%80%BE%E5%84%84%E5%85%83%E5%9B%9E%E6%94%B6%E6%B8%9B%E5%BB%A2%E6%95%88%E7%9B%8A-045114599.html\\">台積電含銅廢液再生技術 年創逾億元回收減廢效益</a>
+(2020/09/30 鉅亨網)
+
+<a href=\\"https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1%E7%9B%A4%E4%B8%AD-%E7%A7%8B%E7%AF%80%E9%95%B7%E5%81%87%E5%89%8D%E8%A7%80%E6%9C%9B-%E5%8F%B0%E8%82%A1%E9%87%8D%E5%9B%9E12500%E9%BB%9E%E4%B9%8B%E4%B8%8A-032027482.html\\">【台股盤中】秋節長假前觀望 台股重回12500點之上</a>
+(2020/09/30 中央社)
+
+<a href=\\"https://tw.stock.yahoo.com/news/%E5%8D%8A%E5%B0%8E%E9%AB%94-%E5%8F%B0%E7%A9%8D%E9%9B%BB%E5%90%AB%E9%8A%85%E5%BB%A2%E6%B6%B2%E5%86%8D%E7%94%9F%E6%8A%80%E8%A1%93-%E5%B9%B4%E5%89%B5%E9%80%BE%E5%84%84%E5%85%83%E7%B6%A0%E8%89%B2%E6%95%88%E7%9B%8A-022733402.html\\">《半導體》台積電含銅廢液再生技術 年創逾億元綠色效益</a>
+(2020/09/30 時報資訊)
+
+<a href=\\"https://tw.stock.yahoo.com/news/%E5%8F%B0%E7%A9%8D%E9%9B%BB%E5%BB%BA%E9%8A%85%E7%89%A9%E6%96%99%E5%86%8D%E7%94%9F%E5%BE%AA%E7%92%B0-%E5%B9%B4%E5%89%B5%E9%80%BE1%E5%84%84%E5%85%83%E7%B6%A0%E8%89%B2%E6%95%88%E7%9B%8A-014324143.html\\">台積電建銅物料再生循環 年創逾1億元綠色效益</a>
+(2020/09/30 中央社)
+
+<a href=\\"https://tw.stock.yahoo.com/news/%E5%90%84%E5%A0%B1%E8%A6%81%E8%81%9E-%E5%8F%B0%E7%A9%8D%E8%B5%B4%E7%BE%8E%E8%A8%AD%E5%BB%A0-ait%E6%8C%89%E8%AE%9A-233636405.html\\">《各報要聞》台積赴美設廠 AIT按讚</a>
+(2020/09/30 時報資訊)
+
+<a href=\\"https://tw.stock.yahoo.com/news/%E7%86%B1%E9%96%80%E6%97%8F%E7%BE%A4-%E5%8F%B0%E7%A9%8D%E9%9B%BB%E4%B9%8F%E4%BA%86-%E6%A6%82%E5%BF%B5%E8%82%A1%E5%90%84%E8%87%AA%E8%A1%A8%E6%85%8B-074320104.html\\">《熱門族群》台積電乏了 概念股各自表態</a>
+(2020/09/29 時報資訊)
+"
+`;
+
+exports[`lib/template getStockCaptionTextTemplate() it should return correct template 1`] = `"🔼 6443 元晶 24.85 | +2.25 (+9.96%)"`;
+
+exports[`lib/template getStockHTMLTemplate() it should return correct template 1`] = `
+"<pre>6443 元晶 | <b>24.85</b> | +2.25 (+9.96%)
+
+總量 40534 | 內盤 8372 | 外盤 31223
+
+最高 24.85 | 最低 22.2 | 開盤 - | 昨收 22.6
+
+        委買        |        委賣        
+----------------------------------------
+      13218      市價                     
+       5053   24.85                     
+         60    24.8                     
+         51   24.75                     
+         66    24.7                     
+
+</pre>
+"
+`;

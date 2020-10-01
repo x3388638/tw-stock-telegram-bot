@@ -56,7 +56,7 @@ export const getNewsListHTMLTemplate = (list) => {
     .join('\n')
 }
 
-const getUpDownIcon = (val) => {
+export const getUpDownIcon = (val) => {
   return val > 0 ? '🔼 ' : val < 0 ? '🔽 ' : ''
 }
 
