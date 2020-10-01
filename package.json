@@ -9,7 +9,7 @@
     "prettier:write": "prettier --write './**/*.{js,json}'",
     "lint": "eslint './**/*.js'",
     "lint:fix": "eslint './**/*.js' --fix",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
