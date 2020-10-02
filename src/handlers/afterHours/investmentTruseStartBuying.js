@@ -4,12 +4,10 @@ import {
   investmentTrustStartBuyingUrl as url
 } from '../../../config'
 
-const handleInvestmentTruseStartBuying = async (bot, { message }) => {
+export default async function handleInvestmentTruseStartBuying({ message }) {
   const chatId = message.chat.id
-  const processId = await bot.sendLoadingMsg(chatId)
+  const processId = await this.sendLoadingMsg(chatId)
   const screenshotBuffer = await screenshot(url, locator)
-  bot.sendPhoto(chatId, screenshotBuffer)
-  bot.deleteMessage(chatId, processId)
+  this.sendPhoto(chatId, screenshotBuffer)
+  this.deleteMessage(chatId, processId)
 }
-
-export default handleInvestmentTruseStartBuying
