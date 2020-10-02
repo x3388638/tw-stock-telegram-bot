@@ -1,9 +1,9 @@
-const handleStart = (bot) => {
-  bot.onText(/\/start$/, (msg) => {
-    const chatId = msg.chat.id
-    bot.sendMessage(
-      chatId,
-      `歡迎使用盤中飧守護神，守護你盤中的便當錢
+export function handleStart(msg) {
+  const chatId = msg.chat.id
+
+  this.sendMessage(
+    chatId,
+    `歡迎使用盤中飧守護神，守護你盤中的便當錢
 
 <b>盤中走勢圖</b>
 <code>/chart 2330</code> - 查詢盤中即時走勢圖
@@ -28,12 +28,9 @@ const handleStart = (bot) => {
 <code>/news 2330</code> - 查詢指定股票相關新聞
 
 資料來源: <a href="https://tw.stock.yahoo.com/">Yahoo!奇摩股市</a>、<a href="https://goodinfo.tw/StockInfo/index.asp">Goodinfo!台灣股市資訊網</a>、<a href="https://www.twse.com.tw/zh/">臺灣證券交易所</a>`,
-      {
-        parse_mode: 'HTML',
-        disable_web_page_preview: true
-      }
-    )
-  })
+    {
+      parse_mode: 'HTML',
+      disable_web_page_preview: true
+    }
+  )
 }
-
-export default handleStart

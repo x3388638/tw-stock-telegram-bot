@@ -5,7 +5,7 @@ import candlestick from './candlestick'
 import stockNews from './news'
 import afterHours from './afterHours'
 import callbackQuery from './callbackQuery'
-import handleInlineQuery from './inlineQuery'
+import inlineQuery from './inlineQuery'
 
 const setup = (bot) => {
   start(bot)
@@ -15,7 +15,7 @@ const setup = (bot) => {
   stockNews(bot)
   afterHours(bot)
   callbackQuery(bot)
-  handleInlineQuery(bot)
+  inlineQuery(bot)
 }
 
 export default {

@@ -15,64 +15,71 @@ import {
   getIndexCaptionTextTemplate
 } from '../lib/template'
 
-const handleLiveChart = (bot) => {
-  bot.onText(/\/chart (.*)/, async (msg, match) => {
-    const chatId = msg.chat.id
-    const stockId = match[1]
+async function handleStockChart(msg, match) {
+  const chatId = msg.chat.id
+  const stockId = match[1]
 
-    if (!isStockIdValid(stockId)) {
-      return bot.sendMessage(chatId, '請輸入有效股號\ne.g. `/chart 2330`', {
-        parse_mode: 'Markdown'
-      })
-    }
-
-    const stockData = await fetchStockData(stockId)
-    if (!stockData.name) {
-      return bot.sendStockIdNotFoundError(chatId, stockId)
-    }
-
-    const processId = await bot.sendLoadingMsg(chatId)
-    const url = chartUrl.replace('STOCK_ID', stockId)
-    const locator = chartLocator
-    const chartBuffer = await screenshot(url, locator)
-    bot.sendPhoto(chatId, chartBuffer, {
-      caption: getStockCaptionTextTemplate(stockData)
-    })
-    bot.deleteMessage(chatId, processId)
-  })
-
-  bot.onText(/\/chart$/, (msg) => {
-    const chatId = msg.chat.id
-    bot.sendMessage(chatId, '請帶入股號\ne.g. `/chart 2330`', {
+  if (!stockId) {
+    return this.sendMessage(chatId, '請帶入股號\ne.g. `/chart 2330`', {
       parse_mode: 'Markdown'
     })
-  })
+  }
 
-  bot.onText(/\/chart_(otc|tse)$/, async (msg, match) => {
-    const chatId = msg.chat.id
-    const type = match[1].toUpperCase()
-    let stockId, url, locator
-
-    if (type === 'TSE') {
-      stockId = tseId
-      url = tseChartUrl
-      locator = tseCahrtLocator
-    } else {
-      stockId = otcId
-      url = otcChartUrl
-      locator = otcChartLocator
-    }
-
-    const processId = await bot.sendLoadingMsg(chatId)
-    const [stockData, chartBuffer] = await Promise.all([
-      fetchStockData(stockId),
-      screenshot(url, locator)
-    ])
-    bot.sendPhoto(chatId, chartBuffer, {
-      caption: getIndexCaptionTextTemplate(stockData)
+  if (!isStockIdValid(stockId)) {
+    return this.sendMessage(chatId, '請輸入有效股號\ne.g. `/chart 2330`', {
+      parse_mode: 'Markdown'
     })
-    bot.deleteMessage(chatId, processId)
+  }
+
+  const stockData = await fetchStockData(stockId)
+  if (!stockData.name) {
+    return this.sendStockIdNotFoundError(chatId, stockId)
+  }
+
+  const processId = await this.sendLoadingMsg(chatId)
+  const url = chartUrl.replace('STOCK_ID', stockId)
+  const locator = chartLocator
+  const chartBuffer = await screenshot(url, locator)
+  this.sendPhoto(chatId, chartBuffer, {
+    caption: getStockCaptionTextTemplate(stockData)
   })
+  this.deleteMessage(chatId, processId)
 }
 
-export default handleLiveChart
+async function handleIndexCahrt(msg, match) {
+  const chatId = msg.chat.id
+  const type = match[1].toUpperCase()
+  let stockId, url, locator
+
+  if (type === 'TSE') {
+    stockId = tseId
+    url = tseChartUrl
+    locator = tseCahrtLocator
+  } else {
+    stockId = otcId
+    url = otcChartUrl
+    locator = otcChartLocator
+  }
+
+  const processId = await this.sendLoadingMsg(chatId)
+  const [stockData, chartBuffer] = await Promise.all([
+    fetchStockData(stockId),
+    screenshot(url, locator)
+  ])
+  this.sendPhoto(chatId, chartBuffer, {
+    caption: getIndexCaptionTextTemplate(stockData)
+  })
+  this.deleteMessage(chatId, processId)
+}
+
+export function handleChart(msg, match) {
+  const { input } = match
+  let m
+  if ((m = input.match(/\/chart(?: (.*))?$/))) {
+    handleStockChart.call(this, msg, m)
+  }
+
+  if ((m = input.match(/\/chart_(otc|tse)$/))) {
+    handleIndexCahrt.call(this, msg, m)
+  }
+}
