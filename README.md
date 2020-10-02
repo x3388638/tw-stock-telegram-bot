@@ -88,3 +88,11 @@ npm start
 <p><img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/113f34ff1732b8ee8e438d573cd06db185cc3b1f/tstb-17.jpg" width="350" /></p>
 <p><img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/113f34ff1732b8ee8e438d573cd06db185cc3b1f/tstb-18.jpg" width="350" /></p>
 </details>
+
+## 已知問題
+- [ ] 盤後資料的外資買賣超、投信買賣超會失敗
+- [ ] K 線圖資料缺漏 (原始資料問題)
+- [ ] 個股盤後資料圖空白值
+
+## LICENSE
+MIT
