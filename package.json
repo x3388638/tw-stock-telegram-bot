@@ -4,6 +4,8 @@
   "description": "Telegram bot to query real-time TW stock quotes, charts, news, and other related information.",
   "main": "index.js",
   "scripts": {
+    "docker:build": "docker build --no-cache -t tw-stock-telegram-bot .",
+    "docker:run": "docker run --rm --name tstb tw-stock-telegram-bot",
     "start": "nodemon",
     "prettier:check": "prettier --check './**/*.{js,json}' && echo \"✅ Prettier validated\"",
     "prettier:write": "prettier --write './**/*.{js,json}'",
