@@ -83,8 +83,8 @@ npm start
 
 ### Inline mode
 <details>
-<img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/113f34ff1732b8ee8e438d573cd06db185cc3b1f/tstb-15.jpg" width="350" style="display: block;margin-bottom: 20px" />
-<img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/113f34ff1732b8ee8e438d573cd06db185cc3b1f/tstb-16.jpg" width="350" style="display: block;margin-bottom: 20px" />
-<img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/113f34ff1732b8ee8e438d573cd06db185cc3b1f/tstb-17.jpg" width="350" style="display: block;margin-bottom: 20px" />
-<img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/113f34ff1732b8ee8e438d573cd06db185cc3b1f/tstb-18.jpg" width="350" style="display: block;margin-bottom: 20px" />
+<p><img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/113f34ff1732b8ee8e438d573cd06db185cc3b1f/tstb-15.jpg" width="350" /></p>
+<p><img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/113f34ff1732b8ee8e438d573cd06db185cc3b1f/tstb-16.jpg" width="350" /></p>
+<p><img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/113f34ff1732b8ee8e438d573cd06db185cc3b1f/tstb-17.jpg" width="350" /></p>
+<p><img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/113f34ff1732b8ee8e438d573cd06db185cc3b1f/tstb-18.jpg" width="350" /></p>
 </details>
