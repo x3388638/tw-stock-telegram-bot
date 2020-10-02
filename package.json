@@ -1,7 +1,7 @@
 {
   "name": "tw-stock-telegram-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Telegram bot to query real-time TW stock quotes, charts, news, and other related information.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
@@ -11,8 +11,8 @@
     "lint:fix": "eslint './**/*.js' --fix",
     "test": "jest --coverage"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "YY",
+  "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "isomorphic-fetch": "^2.2.1",
