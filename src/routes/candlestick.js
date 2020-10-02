@@ -7,49 +7,56 @@ import {
   otcCandlestickUrl
 } from '../../config'
 
-const handleCandlestick = (bot) => {
-  bot.onText(/\/[K|k] (.*)/, async (msg, match) => {
-    const chatId = msg.chat.id
-    const stockId = match[1]
+async function handleStockCandlestick(msg, match) {
+  const chatId = msg.chat.id
+  const stockId = match[1]
 
-    if (!isStockIdValid(stockId)) {
-      return bot.sendMessage(chatId, '請輸入有效股號\ne.g. `/k 2330`', {
-        parse_mode: 'Markdown'
-      })
-    }
-
-    const { name } = await fetchStockData(stockId)
-    if (!name) {
-      return bot.sendStockIdNotFoundError(chatId, stockId)
-    }
-
-    const processId = await bot.sendLoadingMsg(chatId)
-    const locator = candlestickLocator
-    const url = stockCandlestickUrl.replace('STOCK_ID', stockId)
-    const chartBuffer = await screenshot(url, locator)
-
-    bot.sendPhoto(chatId, chartBuffer)
-    bot.deleteMessage(chatId, processId)
-  })
-
-  bot.onText(/\/[K|k]$/, (msg) => {
-    const chatId = msg.chat.id
-    bot.sendMessage(chatId, '請帶入股號\ne.g. `/k 2330`', {
+  if (!stockId) {
+    return this.sendMessage(chatId, '請帶入股號\ne.g. `/k 2330`', {
       parse_mode: 'Markdown'
     })
-  })
+  }
 
-  bot.onText(/\/k_(otc|tse)$/, async (msg, match) => {
-    const chatId = msg.chat.id
-    const type = match[1].toUpperCase()
-    const processId = await bot.sendLoadingMsg(chatId)
-    const url = type === 'TSE' ? tseCandlestickUrl : otcCandlestickUrl
-    const locator = candlestickLocator
-    const chartBuffer = await screenshot(url, locator)
+  if (!isStockIdValid(stockId)) {
+    return this.sendMessage(chatId, '請輸入有效股號\ne.g. `/k 2330`', {
+      parse_mode: 'Markdown'
+    })
+  }
 
-    bot.sendPhoto(chatId, chartBuffer)
-    bot.deleteMessage(chatId, processId)
-  })
+  const { name } = await fetchStockData(stockId)
+  if (!name) {
+    return this.sendStockIdNotFoundError(chatId, stockId)
+  }
+
+  const processId = await this.sendLoadingMsg(chatId)
+  const locator = candlestickLocator
+  const url = stockCandlestickUrl.replace('STOCK_ID', stockId)
+  const chartBuffer = await screenshot(url, locator)
+
+  this.sendPhoto(chatId, chartBuffer)
+  this.deleteMessage(chatId, processId)
 }
 
-export default handleCandlestick
+async function handleIndexCandlestick(msg, match) {
+  const chatId = msg.chat.id
+  const type = match[1].toUpperCase()
+  const processId = await this.sendLoadingMsg(chatId)
+  const url = type === 'TSE' ? tseCandlestickUrl : otcCandlestickUrl
+  const locator = candlestickLocator
+  const chartBuffer = await screenshot(url, locator)
+
+  this.sendPhoto(chatId, chartBuffer)
+  this.deleteMessage(chatId, processId)
+}
+
+export function handleCandlestick(msg, match) {
+  const { input } = match
+  let m
+  if ((m = input.match(/\/[K|k](?: (.*))?$/))) {
+    handleStockCandlestick.call(this, msg, m)
+  }
+
+  if ((m = input.match(/\/k_(otc|tse)$/))) {
+    handleIndexCandlestick.call(this, msg, m)
+  }
+}

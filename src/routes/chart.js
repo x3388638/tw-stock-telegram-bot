@@ -46,7 +46,7 @@ async function handleStockChart(msg, match) {
   this.deleteMessage(chatId, processId)
 }
 
-async function handleIndexCahrt(msg, match) {
+async function handleIndexChart(msg, match) {
   const chatId = msg.chat.id
   const type = match[1].toUpperCase()
   let stockId, url, locator
@@ -80,6 +80,6 @@ export function handleChart(msg, match) {
   }
 
   if ((m = input.match(/\/chart_(otc|tse)$/))) {
-    handleIndexCahrt.call(this, msg, m)
+    handleIndexChart.call(this, msg, m)
   }
 }
