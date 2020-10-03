@@ -37,9 +37,10 @@ const handleInstitutionalInvestorDailyBuyRank = (
     }
 
     const [date, tableBuffer] = await Promise.all([
-      getElementInnerText(url, dateLocator),
+      getElementInnerText(url, dateLocator, { waitUntil: 'networkidle0' }),
       screenshot(url, tableLocator, {
-        waitFor: tableLocator
+        waitFor: tableLocator,
+        waitUntil: 'networkidle0'
       })
     ])
 
