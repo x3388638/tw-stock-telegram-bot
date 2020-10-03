@@ -20,7 +20,7 @@ const newBrowserAndPage = async () => {
  */
 export const screenshot = async (url, locator, { waitFor } = {}) => {
   const [browser, page] = await newBrowserAndPage()
-  await page.goto(url)
+  await page.goto(url, { waitUntil: 'networkidle0' })
   if (waitFor) {
     await page.waitFor(waitFor)
   }
