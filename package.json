@@ -6,7 +6,8 @@
   "scripts": {
     "build": "docker build --no-cache -t tw-stock-telegram-bot .",
     "start": "docker run -it --rm tw-stock-telegram-bot",
-    "dev": "nodemon",
+    "dev": "babel-node index.js",
+    "dev:watch": "nodemon",
     "prettier:check": "prettier --check './**/*.{js,json}' && echo \"✅ Prettier validated\"",
     "prettier:write": "prettier --write './**/*.{js,json}'",
     "lint": "eslint './**/*.js'",

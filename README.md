@@ -2,6 +2,10 @@
 台股機器人，快速取得個股及大盤即時走勢、近期 K 線、相關新聞、盤後資料等，讓你在各種不方便打開充滿高對比紅綠黑看盤軟體的場合 (如擁擠的捷運上或辦公室而且老闆坐你後面) 也能掌握即時報價資訊。
 ![](https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/7de5bf604e5f01d76febe5f668088c2a4518ff1c/tstb-1.png)
 
+## Demo
+`@tw_stock_telegram_bot`
+https://t.me/tw_stock_telegram_bot
+
 ## 如何使用
 ### 前置作業
 請先找到 `@BotFather` [建立新的 Bot](https://core.telegram.org/bots#6-botfather) 取得 API token，並啟用 [inline mode](https://core.telegram.org/bots/inline) 以及設定 commands (`/setcommands`)
@@ -24,7 +28,7 @@ npm start
 或
 ```
 npm install
-npm run dev
+npm run dev:watch
 ```
 
 ## 功能
