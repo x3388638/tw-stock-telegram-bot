@@ -33,7 +33,12 @@ async function handleStockCandlestick(msg, match) {
   const url = stockCandlestickUrl.replace('STOCK_ID', stockId)
   const chartBuffer = await screenshot(url, locator)
 
-  this.sendPhoto(chatId, chartBuffer)
+  if (!chartBuffer) {
+    this.sendTimeoutError(chatId)
+  } else {
+    this.sendPhoto(chatId, chartBuffer)
+  }
+
   this.deleteMessage(chatId, processId)
 }
 
@@ -45,7 +50,12 @@ async function handleIndexCandlestick(msg, match) {
   const locator = candlestickLocator
   const chartBuffer = await screenshot(url, locator)
 
-  this.sendPhoto(chatId, chartBuffer)
+  if (!chartBuffer) {
+    this.sendTimeoutError(chatId)
+  } else {
+    this.sendPhoto(chatId, chartBuffer)
+  }
+
   this.deleteMessage(chatId, processId)
 }
 

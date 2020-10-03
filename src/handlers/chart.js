@@ -40,9 +40,15 @@ async function handleStockChart(msg, match) {
   const url = chartUrl.replace('STOCK_ID', stockId)
   const locator = chartLocator
   const chartBuffer = await screenshot(url, locator)
-  this.sendPhoto(chatId, chartBuffer, {
-    caption: getStockCaptionTextTemplate(stockData)
-  })
+
+  if (!chartBuffer) {
+    this.sendTimeoutError(chatId)
+  } else {
+    this.sendPhoto(chatId, chartBuffer, {
+      caption: getStockCaptionTextTemplate(stockData)
+    })
+  }
+
   this.deleteMessage(chatId, processId)
 }
 
@@ -66,9 +72,15 @@ async function handleIndexChart(msg, match) {
     fetchStockData(stockId),
     screenshot(url, locator)
   ])
-  this.sendPhoto(chatId, chartBuffer, {
-    caption: getIndexCaptionTextTemplate(stockData)
-  })
+
+  if (!chartBuffer) {
+    this.sendTimeoutError(chatId)
+  } else {
+    this.sendPhoto(chatId, chartBuffer, {
+      caption: getIndexCaptionTextTemplate(stockData)
+    })
+  }
+
   this.deleteMessage(chatId, processId)
 }
 

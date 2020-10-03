@@ -8,6 +8,12 @@ export default async function handleInvestmentTruseStartBuying({ message }) {
   const chatId = message.chat.id
   const processId = await this.sendLoadingMsg(chatId)
   const screenshotBuffer = await screenshot(url, locator)
-  this.sendPhoto(chatId, screenshotBuffer)
+
+  if (!screenshotBuffer) {
+    this.sendTimeoutError(chatId)
+  } else {
+    this.sendPhoto(chatId, screenshotBuffer)
+  }
+
   this.deleteMessage(chatId, processId)
 }

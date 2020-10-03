@@ -72,9 +72,14 @@ async function handleStockAfterHours(msg, match) {
     waitUntil: 'networkidle0'
   })
 
-  this.sendPhoto(chatId, chartBuffer, {
-    caption: getStockCaptionTextTemplate(stockData)
-  })
+  if (!chartBuffer) {
+    this.sendTimeoutError(chatId)
+  } else {
+    this.sendPhoto(chatId, chartBuffer, {
+      caption: getStockCaptionTextTemplate(stockData)
+    })
+  }
+
   this.deleteMessage(chatId, processId)
 }
 

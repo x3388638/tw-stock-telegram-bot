@@ -24,7 +24,7 @@ const newBrowserAndPage = async () => {
  * @param {Object} options
  * @param {(String|Number|Function)} options.waitFor a selector, predicate or timeout to wait for
  * @param {(String|String[])} options.waitUntil <"load"|"domcontentloaded"|"networkidle0"|"networkidle2"|Array> When to consider navigation succeeded
- * @returns {Buffer} screenshot base64 buffer
+ * @returns {Buffer|null} screenshot base64 buffer
  */
 export const screenshot = async (
   url,
@@ -32,13 +32,19 @@ export const screenshot = async (
   { waitFor, waitUntil = 'load' } = {}
 ) => {
   const [browser, page] = await newBrowserAndPage()
-  await page.goto(url, { waitUntil })
-  await page.waitFor(waitFor || locator)
-  const $elem = await page.$(locator)
-  const elemImg = await $elem.screenshot({ encoding: 'base64' })
+  let elemImg
+  try {
+    await page.goto(url, { waitUntil })
+    await page.waitFor(waitFor || locator)
+    const $elem = await page.$(locator)
+    elemImg = await $elem.screenshot({ encoding: 'base64' })
+  } catch (e) {
+    console.error(e)
+  }
+
   browser.close()
 
-  return Buffer.from(elemImg, 'base64')
+  return elemImg ? Buffer.from(elemImg, 'base64') : null
 }
 
 /**
@@ -54,10 +60,16 @@ export const getElementInnerText = async (
   { waitUntil = 'load' } = {}
 ) => {
   const [browser, page] = await newBrowserAndPage()
-  await page.goto(url, { waitUntil })
-  await page.waitFor(locator)
-  const text = await page.$eval(locator, ($elem) => $elem.textContent)
+  let text
+  try {
+    await page.goto(url, { waitUntil })
+    await page.waitFor(locator)
+    text = await page.$eval(locator, ($elem) => $elem.textContent)
+  } catch (e) {
+    console.error(e)
+  }
+
   browser.close()
 
-  return text
+  return text || null
 }

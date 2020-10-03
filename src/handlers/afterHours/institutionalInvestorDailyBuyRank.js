@@ -44,9 +44,14 @@ const handleInstitutionalInvestorDailyBuyRank = (
       })
     ])
 
-    this.sendPhoto(chatId, tableBuffer, {
-      caption: date
-    })
+    if (!tableBuffer) {
+      this.sendTimeoutError(chatId)
+    } else {
+      this.sendPhoto(chatId, tableBuffer, {
+        caption: date
+      })
+    }
+
     this.deleteMessage(chatId, processId)
   }
 
