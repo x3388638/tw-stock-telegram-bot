@@ -8,21 +8,24 @@
 請先找到 `@BotFather` [建立新的 Bot](https://core.telegram.org/bots#6-botfather) 取得 API token，並啟用 [inline mode](https://core.telegram.org/bots/inline) 以及設定 commands (`/setcommands`)
 <img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/7de5bf604e5f01d76febe5f668088c2a4518ff1c/tstb-2.png" width="250" />
 
-#### Puppeteer
-請確保你的環境有 Chorme/Chromium 可以跑起 [Puppeteer](https://pptr.dev/)
-
 ### 執行
+#### 一
 ```
 git clone https://github.com/x3388638/tw-stock-telegram-bot.git
 cd tw-stock-telegram-bot
-npm install
 cp config.js.example config.js
+# 將 Bot API token 填入 config.js 中 `botToken`
 ```
 
-將 Bot API token 填入 config.js 中 `botToken`
-
+#### 二
 ```
+npm run build
 npm start
+```
+or
+```
+npm install
+npm run dev
 ```
 
 ## 功能
