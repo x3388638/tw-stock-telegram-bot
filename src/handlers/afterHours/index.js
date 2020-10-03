@@ -68,7 +68,7 @@ async function handleStockAfterHours(msg, match) {
   const processId = await this.sendLoadingMsg(chatId)
   const locator = stockAfterHoursLocator
   const url = stockAfterHoursUrl.replace('STOCK_ID', stockId)
-  const chartBuffer = await screenshot(url, locator)
+  const chartBuffer = await screenshot(url, locator, { waitFor: 1000 })
 
   this.sendPhoto(chatId, chartBuffer, {
     caption: getStockCaptionTextTemplate(stockData)
