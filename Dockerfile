@@ -1,13 +1,13 @@
 FROM buildkite/puppeteer:latest
 
-RUN apt update
-RUN apt install curl -y
-RUN apt install unzip -y
-RUN curl https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKtc-hinted.zip -o font.zip
-RUN unzip font.zip
-RUN mkdir -p /usr/share/fonts/opentype/noto
-RUN mv *otf /usr/share/fonts/opentype/noto
-RUN fc-cache -f -v
+RUN apt-get update && apt-get install -y \
+    unzip \
+    && rm -rf /var/lib/apt/lists/* \
+    && wget https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKtc-hinted.zip -O font.zip \
+    && unzip font.zip \
+    && mkdir -p /usr/share/fonts/opentype/noto \
+    && mv *otf /usr/share/fonts/opentype/noto \
+    && fc-cache -f -v
 
 WORKDIR /usr/src/app
 
