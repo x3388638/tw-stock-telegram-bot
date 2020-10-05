@@ -17,7 +17,7 @@ const handleInstitutionalInvestorDailyBuyRank = (
 ) =>
   async function ({ message }) {
     const chatId = message.chat.id
-    const processId = await this.sendLoadingMsg(chatId)
+    const onLoad = await this.sendLoadingMsg(chatId)
     let url, dateLocator, tableLocator
 
     switch (type) {
@@ -52,7 +52,7 @@ const handleInstitutionalInvestorDailyBuyRank = (
       })
     }
 
-    this.deleteMessage(chatId, processId)
+    onLoad()
   }
 
 export default handleInstitutionalInvestorDailyBuyRank

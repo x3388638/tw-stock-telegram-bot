@@ -65,7 +65,7 @@ async function handleStockAfterHours(msg, match) {
     return this.sendStockIdNotFoundError(chatId, stockId)
   }
 
-  const processId = await this.sendLoadingMsg(chatId)
+  const onLoad = await this.sendLoadingMsg(chatId)
   const locator = stockAfterHoursLocator
   const url = stockAfterHoursUrl.replace('STOCK_ID', stockId)
   const chartBuffer = await screenshot(url, locator, {
@@ -80,7 +80,7 @@ async function handleStockAfterHours(msg, match) {
     })
   }
 
-  this.deleteMessage(chatId, processId)
+  onLoad()
 }
 
 export function handleAfterHours(msg, match) {

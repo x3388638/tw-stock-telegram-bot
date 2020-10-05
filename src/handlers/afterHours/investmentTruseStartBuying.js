@@ -6,7 +6,7 @@ import {
 
 export default async function handleInvestmentTruseStartBuying({ message }) {
   const chatId = message.chat.id
-  const processId = await this.sendLoadingMsg(chatId)
+  const onLoad = await this.sendLoadingMsg(chatId)
   const screenshotBuffer = await screenshot(url, locator)
 
   if (!screenshotBuffer) {
@@ -15,5 +15,5 @@ export default async function handleInvestmentTruseStartBuying({ message }) {
     this.sendPhoto(chatId, screenshotBuffer)
   }
 
-  this.deleteMessage(chatId, processId)
+  onLoad()
 }

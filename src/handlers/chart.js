@@ -36,7 +36,7 @@ async function handleStockChart(msg, match) {
     return this.sendStockIdNotFoundError(chatId, stockId)
   }
 
-  const processId = await this.sendLoadingMsg(chatId)
+  const onLoad = await this.sendLoadingMsg(chatId)
   const url = chartUrl.replace('STOCK_ID', stockId)
   const locator = chartLocator
   const chartBuffer = await screenshot(url, locator)
@@ -49,7 +49,7 @@ async function handleStockChart(msg, match) {
     })
   }
 
-  this.deleteMessage(chatId, processId)
+  onLoad()
 }
 
 async function handleIndexChart(msg, match) {
@@ -67,7 +67,7 @@ async function handleIndexChart(msg, match) {
     locator = otcChartLocator
   }
 
-  const processId = await this.sendLoadingMsg(chatId)
+  const onLoad = await this.sendLoadingMsg(chatId)
   const [stockData, chartBuffer] = await Promise.all([
     fetchStockData(stockId),
     screenshot(url, locator)
@@ -81,7 +81,7 @@ async function handleIndexChart(msg, match) {
     })
   }
 
-  this.deleteMessage(chatId, processId)
+  onLoad()
 }
 
 export function handleChart(msg, match) {

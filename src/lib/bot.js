@@ -21,7 +21,9 @@ bot.sendLoadingMsg = async (chatId) => {
     disable_notification: true
   })
 
-  return message_id
+  return () => {
+    return bot.deleteMessage(chatId, message_id)
+  }
 }
 
 bot.sendStockIdNotFoundError = (chatId, stockId) => {

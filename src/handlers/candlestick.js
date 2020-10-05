@@ -28,7 +28,7 @@ async function handleStockCandlestick(msg, match) {
     return this.sendStockIdNotFoundError(chatId, stockId)
   }
 
-  const processId = await this.sendLoadingMsg(chatId)
+  const onLoad = await this.sendLoadingMsg(chatId)
   const locator = candlestickLocator
   const url = stockCandlestickUrl.replace('STOCK_ID', stockId)
   const chartBuffer = await screenshot(url, locator)
@@ -39,13 +39,13 @@ async function handleStockCandlestick(msg, match) {
     this.sendPhoto(chatId, chartBuffer)
   }
 
-  this.deleteMessage(chatId, processId)
+  onLoad()
 }
 
 async function handleIndexCandlestick(msg, match) {
   const chatId = msg.chat.id
   const type = match[1].toUpperCase()
-  const processId = await this.sendLoadingMsg(chatId)
+  const onLoad = await this.sendLoadingMsg(chatId)
   const url = type === 'TSE' ? tseCandlestickUrl : otcCandlestickUrl
   const locator = candlestickLocator
   const chartBuffer = await screenshot(url, locator)
@@ -56,7 +56,7 @@ async function handleIndexCandlestick(msg, match) {
     this.sendPhoto(chatId, chartBuffer)
   }
 
-  this.deleteMessage(chatId, processId)
+  onLoad()
 }
 
 export function handleCandlestick(msg, match) {
