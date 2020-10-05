@@ -3,8 +3,9 @@
 ![](https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/7de5bf604e5f01d76febe5f668088c2a4518ff1c/tstb-1.png)
 
 ## Demo
-`@tw_stock_telegram_bot`
-https://t.me/tw_stock_telegram_bot
+`@tw_stock_telegram_bot`  
+https://t.me/tw_stock_telegram_bot  
+(學術研究開發測試使用，不提供 24/7 不中斷服務，亦不保證資料之正確性)
 
 ## 如何使用
 ### 前置作業
