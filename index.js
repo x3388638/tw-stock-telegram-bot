@@ -5,6 +5,7 @@ import { handleText } from './src/handlers/text'
 import { handleCandlestick } from './src/handlers/candlestick'
 import { handleStockNews } from './src/handlers/news'
 import { handleAfterHours } from './src/handlers/afterHours'
+import './herokuServer'
 
 const routeConfig = {
   '^/start$': handleStart,
